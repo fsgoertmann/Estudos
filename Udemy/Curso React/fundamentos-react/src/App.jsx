@@ -15,6 +15,7 @@ import DiretaPai from './components/comunicacao/DiretaPai';
 import IndiretaPai from './components/comunicacao/IndiretaPai';
 import Input from './components/formulario/Input';
 import Contador from './components/contador/Contador';
+import Mega from './components/mega/Mega'
 
 import React from 'react';
 
@@ -22,32 +23,37 @@ export default _ =>
   <div className="App">
     <h1>Fundamentos React</h1>
     <div className="Cards">
-    <Card
+      <Card
+        titulo='#13 - Mega'
+        color="#8AEEF0">
+        <Mega />
+      </Card>
+      <Card
         titulo='#12 - Contador'
         color="#E9967A">
-        <Contador numeroInicial={10}/>
+        <Contador numeroInicial={10} />
       </Card>
       <Card
         titulo='#11 - Componente Controlado (Input)'
         color="#FA8072">
-        <Input/>
+        <Input />
       </Card>
       <Card
         titulo='#10 - Comunicação Indireta'
         color="#F08080">
-        <IndiretaPai/>
+        <IndiretaPai />
       </Card>
       <Card
         titulo='#09 - Comunicação Direta'
         color="#CD5C5C">
-        <DiretaPai/>
+        <DiretaPai />
       </Card>
       <Card
         titulo='#08 - Renderização Condicional'
         color="#6495ED">
         <ParOuImpar numero={20} />
-        <UsuarioInfo usuario={{ nome: 'Felipe' }}/>
-        <UsuarioInfo usuario={{ email: 'teste@teste.com' }}/>
+        <UsuarioInfo usuario={{ nome: 'Felipe' }} />
+        <UsuarioInfo usuario={{ email: 'teste@teste.com' }} />
       </Card>
       <Card
         titulo='#07 - Repeticao Desafio'
