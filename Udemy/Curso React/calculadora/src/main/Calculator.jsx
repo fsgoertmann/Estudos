@@ -43,7 +43,7 @@ class Calculator extends Component {
       this.setState({
         displayValue: values[0],
         operation: equals ? null : operation,
-        current: equals ? 0 : 1;
+        current: equals ? 0 : 1,
         clearDisplay: !equals,
         values
       })
@@ -60,7 +60,7 @@ class Calculator extends Component {
 
     const currentValue = clearDisplay ? '' : this.state.displayValue;
     const displayValue = currentValue + n;
-    this.setState(displayValue, clearDisplay = false);
+    this.setState({displayValue, clearDisplay: false});
 
     if (n !== '.') {
       const i = this.state.current;
