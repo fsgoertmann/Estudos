@@ -1,0 +1,22 @@
+<button (click)="modal.toggle()">
+  Mostrar modal
+</button>
+
+<app-modal #modal>
+  <select name="opcoes" id="opcoes">
+    <option value="1">Opção 1</option>
+    <option value="2">Opção 2</option>
+    <option value="3">Opção 3</option>
+  </select>
+  
+  <!--
+       "acaoPrimaria()" é um método
+       dentro do app.component.ts
+  -->
+  <button
+    (click)="acaoPrimaria(); modal.toggle();"
+    class="btn-primario">Ação</button>
+
+  <button
+    class="btn-secundario">Ação 2</button>
+</app-modal>
