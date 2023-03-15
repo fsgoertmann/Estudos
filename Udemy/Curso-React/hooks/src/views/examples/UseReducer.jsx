@@ -2,41 +2,8 @@ import React, { useReducer } from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 import SectionTitle from '../../components/layout/SectionTitle'
 
-const initialState = {
-  cart: [],
-  products: [],
-  user: null,
-  number: 0
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'numberAdd2':
-      return { ...state, number: state.number + 2 }
-    case 'login':
-      return {
-        ...state, user: { name: action.payload }
-      }
-    case 'updateNumber':
-      return {
-        ...state, number: action.payload.value
-      }
-    case 'multiply':
-      return {
-        ...state, number: state.number * action.payload.value
-      }
-    case 'divide':
-      return {
-        ...state, number: state.number / action.payload.value
-      }
-    case 'parseInt':
-      return {
-        ...state, number: parseInt(state.number)
-      }
-    default:
-      return state
-  }
-}
+import { initialState, reducer } from '../../store'
+import { numberAdd2, login } from '../../store/actions'
 
 const UseReducer = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -56,9 +23,9 @@ const UseReducer = (props) => {
         <span className="text">{state.number}</span>
         <div>
           <button className="btn"
-            onClick={() => { dispatch({ type: 'numberAdd2' }) }}>+2</button>
+            onClick={() => numberAdd2(dispatch)}>+2</button>
           <button className="btn"
-            onClick={() => { dispatch({ type: 'login', payload: 'Feumann' }) }}>Login</button>
+            onClick={() => login(dispatch, 'Feumann')}>Login</button>
           <button className="btn"
             onClick={() => { dispatch({ type: 'multiply', payload: { value: 7 } }) }}>Vezes 7</button>
           <button className="btn"

@@ -11,8 +11,8 @@ const UseRef = (props) => {
   const myInput2 = useRef(null)
 
   const merge = function (s1, s2) {
-    sarr1 = s1.split("")
-    sarr2 = s2.split("")
+    const sarr1 = s1.split("")
+    const sarr2 = s2.split("")
     return null
   }
 
