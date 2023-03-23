@@ -4,7 +4,7 @@ import IconButton from '../template/iconButton';
 
 export default props => {
   const keyHandler = e => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       e.shiftKey ? props.handleSearch() : props.handleAdd()
     } else if (e.key === 'Escape') {
       props.handleClear()
@@ -14,7 +14,7 @@ export default props => {
     <div role="form" className="">
       <Grid cols="12 9 10">
         <input id="description" className="form-control"
-          placeholder="Adicione uma tarefa"
+          placeholder={props.addSubItem ? "Adicione uma tarefa" : "Adicione a subtarefa a tarefa"}
           onKeyUp={keyHandler}
           value={props.description}
           onChange={props.handleChange} />
