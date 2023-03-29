@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import ContentHeader from '../commom/template/contentheader'
 import Content from '../commom/template/content'
@@ -6,12 +8,22 @@ import Tabs from '../commom/tab/tabs'
 import TabsHeader from '../commom/tab/tabsheader'
 import TabsContent from '../commom/tab/tabscontent'
 import TabHeader from '../commom/tab/tabheader'
+import TabContent from '../commom/tab/tabcontent'
+import { selectTab, showTabs } from '../commom/tab/tabactions'
+import List from './billingcyclelist'
+import Form from './billingcycleform'
+
 
 class BillingCycle extends Component {
+  componentWillMount() {
+    this.props.selectTab('tabList')
+    this.props.showTabs('tabList', 'tabCreate')
+  }
+
   render() {
     return (
       <div>
-        <ContentHeader title="Ciclo de Pagamentos" small="Cadastro"/>
+        <ContentHeader title="Ciclo de Pagamentos" small="Cadastro" />
         <Content>
           <Tabs>
             <TabsHeader>
@@ -21,7 +33,18 @@ class BillingCycle extends Component {
               <TabHeader label="Excluir" icon="trash-0" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
-
+              <TabContent id="tabList">
+                <List />
+              </TabContent>
+              <TabContent id="tabCreate">
+                <Form />
+              </TabContent>
+              <TabContent id="tabUpdate">
+                <h1>Alterar</h1>
+              </TabContent>
+              <TabContent id="tabDelete">
+                <h1>Excluir</h1>
+              </TabContent>
             </TabsContent>
           </Tabs>
         </Content>
@@ -30,4 +53,5 @@ class BillingCycle extends Component {
   }
 }
 
-export default BillingCycle
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs }, dispatch)
+export default connect(null, mapDispatchToProps)(BillingCycle)
