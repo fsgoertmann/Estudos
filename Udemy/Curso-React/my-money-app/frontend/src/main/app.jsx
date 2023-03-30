@@ -1,4 +1,3 @@
-import '../commom/template/dependecies'
 import React from 'react'
 
 import Header from '../commom/template/header'
