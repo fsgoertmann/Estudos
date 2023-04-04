@@ -10,7 +10,7 @@ import { getSummary } from './dashboardactions'
 
 class Dashboard extends Component {
   componentWillMount() {
-    this.props.getSummary()
+    this.props.getSummary(this.auth.user)
   }
 
   render() {
@@ -30,6 +30,7 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({ summary: state.dashboard.summary })
+
+const mapStateToProps = state => ({ summary: state.dashboard.summary, auth: state.auth })
 const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

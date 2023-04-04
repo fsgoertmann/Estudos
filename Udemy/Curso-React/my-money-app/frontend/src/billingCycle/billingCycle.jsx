@@ -18,7 +18,7 @@ import Form from './billingcycleform'
 
 class BillingCycle extends Component {
   componentWillMount() {
-    this.props.init()
+    this.props.init(this.auth.user)
   }
 
   render() {
@@ -65,5 +65,6 @@ class BillingCycle extends Component {
   }
 }
 
+const mapStateToProps = state => ({ auth: state.auth })
 const mapDispatchToProps = dispatch => bindActionCreators({ create, update, remove, init}, dispatch)
-export default connect(null, mapDispatchToProps)(BillingCycle)
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycle)

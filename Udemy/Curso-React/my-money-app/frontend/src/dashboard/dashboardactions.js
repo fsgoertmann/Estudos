@@ -1,9 +1,8 @@
 import Axios from 'axios'
+import consts from '../consts'
 
-const BASE_URL = 'http://localhost:5027/api'
-
-export function getSummary() {
-  const request = Axios.get(`${BASE_URL}/billingCycles/summary`)
+export function getSummary(user) {
+  const request = Axios.get(`${consts.API_URL}/billingCycles/summary?search=${user}`)
   return {
     type: "BILLING_SUMMARY_FETCH",
     payload: request
