@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+import App from './app'
 import Auth from '../auth/auth'
 import { validateToken } from '../auth/authActions'
-import Routes from './routes'
 
 class AuthOrApp extends Component {
     componentWillMount() {
@@ -18,7 +19,7 @@ class AuthOrApp extends Component {
         const { user, validToken } = this.props.auth
         if (user && validToken) {
             axios.defaults.headers.common['authorization'] = user.token
-            return <Routes>{this.props.children}</Routes>
+            return <App>{this.props.children}</App>
         } else if (!user && !validToken) {
             return <Auth />
         } else {
