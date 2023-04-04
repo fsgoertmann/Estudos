@@ -5,7 +5,7 @@ const User = require('./user')
 const env = require('../../.env')
 
 const emailRegex = /\S+@\S+.\S+/
-const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/
+const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{6,20})/
 
 const sendErrorsFromDB = (res, dbErrors) => {
     const errors = []
@@ -47,7 +47,7 @@ const signup = (req, res, next) => {
     const confirmPassword = req.body.confirm_password || ''
 
     if (!email.match(emailRegex)) {
-        return res.status(400).send({ errors: ['O e-mail informa está inválido'] })
+        return res.status(400).send({ errors: ['O e-mail informado está inválido'] })
     }
     if (!password.match(passwordRegex)) {
         return res.status(400).send({
