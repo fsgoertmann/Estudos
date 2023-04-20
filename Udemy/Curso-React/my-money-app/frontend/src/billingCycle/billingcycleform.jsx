@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field, formValueSelector, change } from 'redux-form'
 import LabelAndInput from '../commom/form/labelandinput'
 import { init } from './billingcycleaction'
 import ItemList from './itemList'
@@ -19,7 +19,8 @@ class BillingCycleForm extends Component {
 
   render() {
     //Para o Field as propriedades name e component são obrigatórios
-    const { handleSubmit, readOnly, credits, debts } = this.props
+    const { handleSubmit, readOnly, credits, debts, userId } = this.props
+    this.props.dispatch(change("billingCycleForm", "userId", userId))
     const { sumOfCredits, sumOfDebts } = this.calculateSummary()
     return (
       <form role="form" onSubmit={handleSubmit}>
@@ -54,9 +55,10 @@ class BillingCycleForm extends Component {
 
 BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
 const selector = formValueSelector('billingCycleForm')
-const mapStateToProps = state => ({ 
-  credits: selector(state, 'credits'), 
-  debts: selector(state, 'debts') 
+const mapStateToProps = state => ({
+  credits: selector(state, 'credits'),
+  debts: selector(state, 'debts'),
+  userId: state.auth.user._id
 })
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)

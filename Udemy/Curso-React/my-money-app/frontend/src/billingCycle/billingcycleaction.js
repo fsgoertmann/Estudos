@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../commom/tab/tabactions'
 
 import consts from '../consts'
-const INITIAL_VALUES = { credits: [{}], debts:[{}] }
+const INITIAL_VALUES = { credits: [{}], debts: [{}] }
 
 
 function submit(values, method) {
@@ -13,7 +13,7 @@ function submit(values, method) {
     Axios[method](`${consts.API_URL}/billingCycles/${id}`, values)
       .then(resp => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.')
-        dispatch(init())
+        dispatch(init(values.userId))
       })
       .catch(e => {
         e.response.data.errors.forEach(erro => {
@@ -25,10 +25,12 @@ function submit(values, method) {
 }
 
 export function getList(user) {
-  const request = Axios.get(`${consts.API_URL}/billingCycles?user=${user}`)
-  return {
-    type: 'BILLING_CYCLES_FETCH',
-    payload: request
+  return dispatch => {
+    Axios.get(`${consts.API_URL}/billingCycles`)
+    .then(resp => {
+      const data = resp.data.filter(cycle => cycle.userId === user)
+      dispatch({ type: 'BILLING_CYCLES_FETCH', payload: data })
+    })
   }
 }
 

@@ -6,7 +6,7 @@ import { getList, showUpdate, showDelete } from './billingcycleaction'
 
 class BillinCycleList extends Component {
   componentWillMount() {
-    this.props.getList()
+    this.props.getList(this.props.userId)
   }
 
   renderRows() {
@@ -49,6 +49,6 @@ class BillinCycleList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ list: state.billingCycle.list })
+const mapStateToProps = state => ({ list: state.billingCycle.list, userId: state.auth.user._id })
 const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate, showDelete }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(BillinCycleList)
